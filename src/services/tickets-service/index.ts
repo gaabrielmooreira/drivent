@@ -1,4 +1,4 @@
-import { Enrollment, Ticket, TicketStatus, TicketType } from '@prisma/client';
+import { Ticket, TicketType } from '@prisma/client';
 import ticketRepository from '@/repositories/ticket-repository';
 import enrollmentRepository from '@/repositories/enrollment-repository';
 import { notFoundError } from '@/errors';
