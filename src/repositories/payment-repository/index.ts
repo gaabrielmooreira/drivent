@@ -7,8 +7,13 @@ async function findByTicketId(ticketId: number): Promise<Payment> {
   });
 }
 
+async function create(data: Omit<Payment, 'id' | 'createdAt' | 'updatedAt'>): Promise<Payment> {
+  return prisma.payment.create({ data });
+}
+
 const paymentRepository = {
   findByTicketId,
+  create,
 };
 
 export default paymentRepository;
