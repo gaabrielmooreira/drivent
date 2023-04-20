@@ -7,3 +7,4 @@ export * from './unauthorized-error';
 export * from './request-error';
 export * from './no-content-error';
 export * from './ticket-not-sended-error';
+export * from './payment-required-error';
