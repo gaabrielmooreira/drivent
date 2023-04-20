@@ -1,4 +1,4 @@
-import { Hotel } from '@prisma/client';
+import { Hotel, Room } from '@prisma/client';
 import { notFoundError, paymentRequiredError } from '@/errors';
 import enrollmentRepository from '@/repositories/enrollment-repository';
 import hotelRepository from '@/repositories/hotel-repository';
@@ -24,8 +24,19 @@ async function getHotels(userId: number): Promise<Hotel[]> {
   return hotels;
 }
 
+async function getHotelWithRooms({ userId, hotelId }: { userId: number; hotelId: number }): Promise<HotelWithRooms> {
+  await checksBeforeGetHotelsOrRooms(userId);
+
+  const hotelWithRooms = await hotelRepository.getHotelWithRooms(hotelId);
+  if (!hotelWithRooms) throw notFoundError();
+  return hotelWithRooms;
+}
+
+export type HotelWithRooms = Hotel & { Rooms: Room[] };
+
 const hotelsService = {
   getHotels,
+  getHotelWithRooms,
 };
 
 export default hotelsService;
