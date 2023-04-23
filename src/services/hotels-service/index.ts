@@ -12,7 +12,7 @@ async function checksBeforeGetHotelsOrRooms(userId: number): Promise<void> {
   if (!ticket) throw notFoundError();
 
   const ticketType = await ticketRepository.findUniqueTicketTypeById(ticket.ticketTypeId);
-  if (!ticketType || ticketType.isRemote || !ticketType.includesHotel || ticket.status !== 'PAID')
+  if (!ticketType || ticketType.isRemote || ticketType.includesHotel === false || ticket.status !== 'PAID')
     throw paymentRequiredError();
 }
 
