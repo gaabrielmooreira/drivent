@@ -1,6 +1,6 @@
 import { Booking } from '@prisma/client';
 import { prisma } from '@/config';
-import { BookIdWithRoom } from '@/services/bookings-service';
+import { BookIdWithRoom } from '@/services/booking-service';
 
 async function create(data: Pick<Booking, 'userId' | 'roomId'>): Promise<Booking> {
   return prisma.booking.create({ data });
