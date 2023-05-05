@@ -9,3 +9,15 @@ export async function createBooking(userId: number, roomId: number): Promise<Boo
     },
   });
 }
+
+export function createBookingData(): Booking {
+  const date: Date = new Date();
+
+  return {
+    id: 1,
+    userId: 1,
+    roomId: 1,
+    createdAt: date,
+    updatedAt: date,
+  };
+}
